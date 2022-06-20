@@ -15,7 +15,7 @@ public class DrogariaController {
 	// E TAMBÉM PRECISA DE UMA ANOTAÇÃO
 	@RequestMapping("/ola")
 	public String retornaMensagem() {
-		return "Olá drogaria";
+		return "Olá ";
 	}
 
 }
