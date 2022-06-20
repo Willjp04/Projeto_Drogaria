@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -46,5 +48,9 @@ public class Produto {
 	
 	@Column
 	private LocalDate dataDeValidade;
+	
+	@ManyToOne // ESTA ANOTAÇÃO É A CHAVE ESTRANGEIRA QUE LIGA A CLASSE PRODUTO NA CLASSE CATEGORIA SENDO MUITOS PARA UM MUITOS PRODUTOS LIGAM PARA UMA CATEGORIA
+	@JoinColumn(nullable = false) //ESTA ANOTAÇÃO É COMO O COLUNM MAS PARA CHAVE ESTRANGEIRA.
+	private Categoria categoria;
 
 }

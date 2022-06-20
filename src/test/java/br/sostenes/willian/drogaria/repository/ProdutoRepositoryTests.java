@@ -17,11 +17,11 @@ public class ProdutoRepositoryTests {
 
 	@Test
 	public void inserir() {
-		Produto p1 = new Produto(null, "Coca-cola", 5, BigDecimal.valueOf(10.50), LocalDate.of(2022, 9, 20));
+		Produto p1 = new Produto(null, "Coca-cola", 5, BigDecimal.valueOf(10.50), LocalDate.of(2022, 9, 20),null);
 
-		Produto p2 = new Produto(null, "Fanta", 4, BigDecimal.valueOf(8.50), LocalDate.of(2022, 10, 20));
+		Produto p2 = new Produto(null, "Fanta", 4, BigDecimal.valueOf(8.50), LocalDate.of(2022, 10, 20),null);
 		
-		Produto p3 = new Produto(null, "Sukita", 2, BigDecimal.valueOf(6.50), LocalDate.of(2022, 12, 15));
+		Produto p3 = new Produto(null, "Sukita", 2, BigDecimal.valueOf(6.50), LocalDate.of(2022, 12, 15),null);
 
 		
 		//AQUI EU CHAMEI A INTERFACE PARA SALVAR AS ENTIDADES CRIADAS.
