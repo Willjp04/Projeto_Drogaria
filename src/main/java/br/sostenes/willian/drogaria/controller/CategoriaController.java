@@ -37,7 +37,8 @@ public class CategoriaController {
 		return categoriaSalva;
 
 	}
-
+	
+	// ESTE MÉTODO É PARA EXCLUSÃO 
 	@DeleteMapping("/{codigo}")
 	public Categoria deletar(@PathVariable Integer codigo) {
 		Optional<Categoria> categoria = categoriaRepository.findById(codigo);
