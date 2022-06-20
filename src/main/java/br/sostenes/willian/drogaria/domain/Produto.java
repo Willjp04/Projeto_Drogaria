@@ -17,6 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor // ESTA ANOTAÇÃO É PARA UTILIZAR O CONSTRUTOR COM TODOS OS ATRIBUTOS.
 public class Produto {
 
+	
 	private Integer codigo;
 	private String nome;
 	private Integer quantidade;
