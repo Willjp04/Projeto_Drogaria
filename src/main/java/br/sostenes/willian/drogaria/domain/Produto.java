@@ -39,7 +39,7 @@ public class Produto {
 	private Integer quantidade;
 	
 	@Column(nullable = false, precision = 5,scale = 2)
-		//O PRECISION INDICA A QUANTIDADE DE NÚMEROS TOTAIS
+	//O PRECISION INDICA A QUANTIDADE DE NÚMEROS TOTAIS
 	//O SCALE INDICA A QUANTIDADE DE NÚMEROS TOTAIS DEPOIS DA VIRGULA
 	// NO CASO ACIMA FICARÁ NO MÁXIMO DE 999,99 REAIS
 	private BigDecimal preco;
