@@ -1,5 +1,6 @@
 package br.sostenes.willian.drogaria.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,7 @@ import br.sostenes.willian.drogaria.domain.Categoria;
 import br.sostenes.willian.drogaria.exception.RecursoNaoEncontradoException;
 import br.sostenes.willian.drogaria.repository.CategoriaRepository;
 
-//ESTA CLASSE 
+//ESTA CLASSE É PARA OS SERVIÇOS
 
 @Service
 public class CategoriaService {
@@ -17,6 +18,7 @@ public class CategoriaService {
 	@Autowired
 	private CategoriaRepository categoriaRepository;
 
+//ESTE MÉTODO FAZ O TRATAMENTO PARA EXCEPTION QUANDO BUSCAR UMA CATEGORIA
 	public Categoria buscarPorCodigo(Integer codigo) {
 		Optional<Categoria> resultado = categoriaRepository.findById(codigo);
 
@@ -28,4 +30,10 @@ public class CategoriaService {
 		return categoria;
 
 	}
+	
+	public List<Categoria> buscarTudo(){
+		List<Categoria> resultado = categoriaRepository.findAll();
+		return resultado;
+	}
+
 }
