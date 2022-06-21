@@ -1,11 +1,16 @@
 package br.sostenes.willian.drogaria.controller;
 
+import java.lang.StackWalker.Option;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
@@ -21,34 +26,35 @@ public class CategoriaController {
 	private CategoriaService categoriaService;
 
 // ESTE MÉTODO É PARA RETORNAR TODAS AS CATEGORIAS, FOI CRIADO UMA LISTA PASSANDO CATEGORIAS DENTRO
-@GetMapping
-public List<Categoria> listar() {
+	@GetMapping
+	public List<Categoria> listar() {
 		List<Categoria> resultado = categoriaService.buscarTudo();
 		return resultado;
 
 	}
 
 	// ESTE MÉTODO É PARA INSERÇÃO
-//	@PostMapping // ESTA ANOTAÇÃO É SEMPRE PARA INSERÇÃO DE DADOS
+	@PostMapping("/add") // ESTA ANOTAÇÃO É SEMPRE PARA INSERÇÃO DE DADOS
+	public Categoria inserir(@RequestBody Categoria categoria) { // ESTA ANOTAÇÃO É PARA MAPEAR ESTE OBJETO
+		Categoria categoriaSalva = categoriaService.inserirCategoria(categoria);
+		return categoriaSalva;
 
-////	public Categoria inserir(@RequestBody Categoria categoria) { // ESTA ANOTAÇÃO É PARA MAPEAR ESTE OBJETO
-////		Categoria categoriaSalva = categoriaRepository.save(categoria);
-////		return categoriaSalva;
-//
-//	}
-//	
+	}
+
 	// ESTE MÉTODO É PARA EXCLUSÃO
 
-	/*
-	 * @DeleteMapping("/{codigo}") public Categoria buscarPorCodigo(@PathVariable
-	 * Integer codigo) { try { Categoria categoria =
-	 * categoriaService.buscarPorCodigo(codigo); return categoria; } catch
-	 * (RecursoNaoEncontradoException excecao) { throw new
-	 * ResponseStatusException(HttpStatus.NOT_FOUND, "Categoria não encontrada",
-	 * excecao); }
-	 * 
-	 * } }
-	 */
+	
+	 @DeleteMapping("/{codigo}") 
+	 public Categoria excluir(@PathVariable Integer codigo) {
+		 Categoria categoriaDeleta = categoriaService.deletarCategoria(codigo);
+		 return categoriaDeleta;
+		 
+	 }
+		
+		 
+		 
+		
+	 
 //	//ESTE MÉTODO É PARA EDIÇÃO 
 //	@PutMapping 
 //	public Categoria editar(@RequestBody Categoria categoria) {
