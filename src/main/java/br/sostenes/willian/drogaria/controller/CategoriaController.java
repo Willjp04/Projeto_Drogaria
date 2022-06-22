@@ -1,9 +1,6 @@
 package br.sostenes.willian.drogaria.controller;
 
-import java.lang.StackWalker.Option;
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -35,7 +32,7 @@ public class CategoriaController {
 	}
 
 	// ESTE MÉTODO É PARA INSERÇÃO
-	@PostMapping("/add") // ESTA ANOTAÇÃO É SEMPRE PARA INSERÇÃO DE DADOS
+	@PostMapping("/adicionar") // ESTA ANOTAÇÃO É SEMPRE PARA INSERÇÃO DE DADOS
 	public Categoria inserir(@RequestBody Categoria categoria) { // ESTA ANOTAÇÃO É PARA MAPEAR ESTE OBJETO
 		Categoria categoriaSalva = categoriaService.inserirCategoria(categoria);
 		return categoriaSalva;
