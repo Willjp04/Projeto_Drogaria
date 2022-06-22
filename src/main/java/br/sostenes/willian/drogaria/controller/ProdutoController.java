@@ -25,7 +25,7 @@ public class ProdutoController {
 		
 	}
 	
-	@PostMapping("/adicionar")
+	@PostMapping("/add")
 	public Produto inserir(@RequestBody Produto produto) {
 		Produto produtoSalva = produtoService.inserirProduto(produto);
 		return produtoSalva;
