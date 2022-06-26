@@ -1,5 +1,6 @@
 package br.sostenes.willian.drogaria.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import br.sostenes.willian.drogaria.domain.Categoria;
 import br.sostenes.willian.drogaria.domain.Produto;
+import br.sostenes.willian.drogaria.repository.CategoriaRepository;
 import br.sostenes.willian.drogaria.repository.ProdutoRepository;
 
 @Service
@@ -36,6 +38,11 @@ public class ProdutoService {
 		Optional<Produto> resultado = produtoRepository.findById(codigo);
 		produtoRepository.delete(resultado.get());
 		return resultado.get();
+	}
+	
+	public List<Produto> buscarTudo(){
+		List<Produto> resultado = produtoRepository.findAll();
+		return resultado;
 	}
 	
 

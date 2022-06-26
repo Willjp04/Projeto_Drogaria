@@ -1,5 +1,7 @@
 package br.sostenes.willian.drogaria.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,5 +38,12 @@ public class ProdutoController {
 	public Produto deletar(@PathVariable Integer codigo) {
 		Produto produtoDeleta = produtoService.deletarProduto(codigo);
 		return produtoDeleta;
+	}
+	
+	@GetMapping
+	public List<Produto> listar(){
+		List<Produto> resultado  = produtoService.buscarTudo();
+		return resultado;
+		
 	}
 }
