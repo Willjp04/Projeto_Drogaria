@@ -6,10 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.sostenes.willian.drogaria.domain.Categoria;
 import br.sostenes.willian.drogaria.domain.Produto;
-import br.sostenes.willian.drogaria.exception.ProdutoNaoEncontradoException;
-import br.sostenes.willian.drogaria.repository.CategoriaRepository;
+
+import br.sostenes.willian.drogaria.exception.RecursoNaoEncontradoException;
+
 import br.sostenes.willian.drogaria.repository.ProdutoRepository;
 
 @Service
@@ -21,9 +21,9 @@ public class ProdutoService {
 	// ESTE MÉTODO É PARA BUSCAR UM PRODUTO POR CÓDIGO
 	public Produto buscarPorCodigo(Integer codigo) {
 		Optional<Produto> resultado = produtoRepository.findById(codigo);
-		
-		if(resultado.isEmpty()) {
-			throw new ProdutoNaoEncontradoException();
+
+		if (resultado.isEmpty()) {
+			throw new RecursoNaoEncontradoException();
 		}
 
 		Produto produto = resultado.get();
@@ -36,19 +36,22 @@ public class ProdutoService {
 		Produto produtoSalva = produtoRepository.save(produto);
 		return produtoSalva;
 	}
-	
+
 	// ESTE MÉTODO É PARA DELETAR PRODUTOS
-	
+
 	public Produto deletarProduto(Integer codigo) {
 		Optional<Produto> resultado = produtoRepository.findById(codigo);
+		if (resultado.isEmpty()) {
+			throw new RecursoNaoEncontradoException();
+		}
+
 		produtoRepository.delete(resultado.get());
 		return resultado.get();
 	}
-	
-	public List<Produto> buscarTudo(){
+
+	public List<Produto> buscarTudo() {
 		List<Produto> resultado = produtoRepository.findAll();
 		return resultado;
 	}
-	
 
 }

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import br.sostenes.willian.drogaria.domain.Produto;
-import br.sostenes.willian.drogaria.exception.ProdutoNaoEncontradoException;
+import br.sostenes.willian.drogaria.exception.RecursoNaoEncontradoException;
 import br.sostenes.willian.drogaria.service.ProdutoService;
 
 @RestController
@@ -29,7 +29,7 @@ public class ProdutoController {
 		try {
 			Produto produto = produtoService.buscarPorCodigo(codigo);
 			return produto;
-		} catch (ProdutoNaoEncontradoException excecao) {
+		} catch (RecursoNaoEncontradoException excecao) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Produto não encontrado", excecao);
 		}
 	}
@@ -43,8 +43,15 @@ public class ProdutoController {
 
 	@DeleteMapping("/{codigo}")
 	public Produto deletar(@PathVariable Integer codigo) {
-		Produto produtoDeleta = produtoService.deletarProduto(codigo);
-		return produtoDeleta;
+		try {
+			Produto produtDeleta = produtoService.deletarProduto(codigo);
+			return produtDeleta;
+		} catch (RecursoNaoEncontradoException excecao) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Produto não encontrado para ser deletado",
+					excecao);
+
+		}
+
 	}
 
 	@GetMapping
