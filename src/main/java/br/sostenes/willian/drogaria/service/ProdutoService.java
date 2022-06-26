@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import br.sostenes.willian.drogaria.domain.Categoria;
 import br.sostenes.willian.drogaria.domain.Produto;
+import br.sostenes.willian.drogaria.exception.ProdutoNaoEncontradoException;
 import br.sostenes.willian.drogaria.repository.CategoriaRepository;
 import br.sostenes.willian.drogaria.repository.ProdutoRepository;
 
@@ -20,6 +21,10 @@ public class ProdutoService {
 	// ESTE MÉTODO É PARA BUSCAR UM PRODUTO POR CÓDIGO
 	public Produto buscarPorCodigo(Integer codigo) {
 		Optional<Produto> resultado = produtoRepository.findById(codigo);
+		
+		if(resultado.isEmpty()) {
+			throw new ProdutoNaoEncontradoException();
+		}
 
 		Produto produto = resultado.get();
 		return produto;
