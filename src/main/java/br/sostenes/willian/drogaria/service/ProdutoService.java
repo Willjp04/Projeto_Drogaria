@@ -48,10 +48,16 @@ public class ProdutoService {
 		produtoRepository.delete(resultado.get());
 		return resultado.get();
 	}
-
+	// ESTE MÉTODO É PARA LISTAR TODOS OS PRODUTOS CADASTRADOS
 	public List<Produto> buscarTudo() {
 		List<Produto> resultado = produtoRepository.findAll();
 		return resultado;
+	}
+	
+	public Produto editar(Produto produto) {
+		Produto editaProduto = produtoRepository.save(produto);
+		return editaProduto;
+		
 	}
 
 }
