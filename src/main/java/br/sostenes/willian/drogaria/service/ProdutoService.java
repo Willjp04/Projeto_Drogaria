@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.sostenes.willian.drogaria.domain.Categoria;
 import br.sostenes.willian.drogaria.domain.Produto;
 import br.sostenes.willian.drogaria.repository.ProdutoRepository;
 
@@ -28,5 +29,14 @@ public class ProdutoService {
 		Produto produtoSalva = produtoRepository.save(produto);
 		return produtoSalva;
 	}
+	
+	// ESTE MÉTODO É PARA DELETAR PRODUTOS
+	
+	public Produto deletarProduto(Integer codigo) {
+		Optional<Produto> resultado = produtoRepository.findById(codigo);
+		produtoRepository.delete(resultado.get());
+		return resultado.get();
+	}
+	
 
 }
