@@ -34,6 +34,12 @@ public class ProdutoService {
 
 	}
 
+	@Query(value = "select p from Produto p where p.nome like %?1%")
+	public Produto buscarPorNome(String nome) {
+		List<Produto> resultado = produtoRepository.findAll();
+		return (Produto) resultado;
+	}
+
 	// ESTE MÉTODO É PARA INSERIR PRODUTOS
 	public Produto inserirProduto(Produto produto) {
 		Produto produtoSalva = produtoRepository.save(produto);

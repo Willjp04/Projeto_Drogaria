@@ -70,5 +70,7 @@ public class CategoriaController {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "categoria não encontrada", excecao);
 		}
 	}
+	
+	
 
 }
