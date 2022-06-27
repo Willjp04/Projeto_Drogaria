@@ -4,7 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.databind.introspect.TypeResolutionContext.Empty;
 
 import br.sostenes.willian.drogaria.domain.Produto;
 
@@ -48,16 +51,22 @@ public class ProdutoService {
 		produtoRepository.delete(resultado.get());
 		return resultado.get();
 	}
+
 	// ESTE MÉTODO É PARA LISTAR TODOS OS PRODUTOS CADASTRADOS
 	public List<Produto> buscarTudo() {
 		List<Produto> resultado = produtoRepository.findAll();
 		return resultado;
 	}
-	
+
 	public Produto editar(Produto produto) {
-		Produto editaProduto = produtoRepository.save(produto);
+
+		Produto editaProduto = produtoRepository.saveAndFlush(produto);
+		if (produto.getCodigo() == null) {
+			throw new RecursoNaoEncontradoException();
+		}
+
 		return editaProduto;
-		
+
 	}
 
 }
