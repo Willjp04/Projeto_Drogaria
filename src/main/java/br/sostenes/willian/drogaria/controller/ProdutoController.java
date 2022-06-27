@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -35,7 +36,7 @@ public class ProdutoController {
 		}
 	}
 
-	@PostMapping("/add")
+	@PostMapping("/adicionar")
 	public Produto inserir(@RequestBody Produto produto) {
 		Produto produtoSalva = produtoService.inserirProduto(produto);
 		return produtoSalva;
@@ -55,7 +56,8 @@ public class ProdutoController {
 
 	}
 
-	@GetMapping
+	@GetMapping("/listartodos")
+	@ResponseBody // ESSA ANOTAÇÃO É PARA RETORNAR O JSON COM TUDO
 	public List<Produto> listar() {
 		List<Produto> resultado = produtoService.buscarTudo();
 		return resultado;

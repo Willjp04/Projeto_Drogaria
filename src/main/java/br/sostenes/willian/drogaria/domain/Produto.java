@@ -1,5 +1,6 @@
 package br.sostenes.willian.drogaria.domain;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,10 +26,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor // ESTA ANOTAÇÃO É PARA UTILIZAR O CONSTRUTOR PADRÃO
 @AllArgsConstructor // ESTA ANOTAÇÃO É PARA UTILIZAR O CONSTRUTOR COM TODOS OS ATRIBUTOS.
 @Entity // ESTA ANOTAÇÃO INFORMA QUE ESSA CLASSE É UMA TABELA NO BANCO DE DADOS
-public class Produto {
+@SequenceGenerator(name = "seq_produtos", sequenceName = "seq_produtos", allocationSize = 1, initialValue = 1) //ESSA ANOTAÇÃO É PARA SEQUENCIAR OS ID'S
+public class Produto implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
+
 
 	@Id // ESTA ANOTAÇÃO SERVE PARA INFORMAR QUE ESTE ATRIBUTO É A CHAVE PRIMÁRIA
-	@GeneratedValue(strategy = GenerationType.IDENTITY) // ESTA ANOTAÇÃO VAI ATRIBUIR UMA CHAVE PRIMÁRIA AUTOMÁTICA PARA O ATRIBUTO
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "seq_produtos") // ESTA ANOTAÇÃO VAI ATRIBUIR UMA CHAVE PRIMÁRIA AUTOMÁTICA PARA O ATRIBUTO
 	private Integer codigo;
 
 	
